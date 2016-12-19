@@ -20,8 +20,8 @@ import sys
 from options import Options
 from ubootenv import set_alt_rootfs, set_alt_kernel
 from utils import panic, reboot
-from fs import mount_recovery, umount_recovery
 from image import install_kernel_image, install_dtb_image, install_recovery
+from fs import mount_recovery, umount_recovery
 
 def factory():
     try:
@@ -49,9 +49,7 @@ def normal():
 
 def install_rootfs_image(image_name):
     try:
-        mount_recovery()
         install_recovery(image_name)
-        umount_recovery()
     except StandardError as err:
         panic("", err)
 
