@@ -21,8 +21,7 @@ from options import Options
 from ubootenv import set_alt_rootfs, set_alt_kernel
 from utils import panic, reboot
 from fs import mount_recovery, umount_recovery
-from image import install_kernel_image, install_dtb_image
-from recovery.image import install_recovery
+from image import install_kernel_image, install_dtb_image, install_recovery
 
 def factory():
     try:

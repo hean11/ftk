@@ -26,6 +26,6 @@ setup(
     license = 'LGPLv2',
     author = 'Robert Lehmann',
     author_email = 'robert.lehmann@sitec-systems.de',
-    packages = ['ftk', 'ftk.recovery'],
+    packages = ['ftk'],
     scripts = ['scripts/ftk'],
 )
