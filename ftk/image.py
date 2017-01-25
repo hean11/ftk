@@ -25,7 +25,7 @@ KERNEL_PART="/dev/mtd1"
 DTB_PART="/dev/mtd2"
 IMAGE_PATH='/var/ftk/image.ubifs.gz'
 TEMP_IMAGE='/tmp/image.ubifs'
-IMAGE_MOUNT_PATH='/mnt/var/ftk/image.ubifs.gz'
+IMAGE_MOUNT_PATH='/mnt/var/ftk/image.tar.bz2'
 
 def erase_partition(part):
 	try:
@@ -69,8 +69,8 @@ def check_recovery_image(rimage):
 	path = os.path.realpath(rimage)
 	try:
                 resp = subprocess.check_output(["file", path])
-                if resp.find("UBIfs image") == -1 :
-                        raise StandardError("The file %s is no valid ubifs image" % (path))
+                if resp.find("bzip2") == -1 :
+                        raise StandardError("The file %s is no valid bzip2 archive file" % (path))
         except subprocess.CalledProcessError as err:
                 raise StandardError("Can't check file format of %s: %i" % (path, err.returncode))
 
@@ -92,9 +92,8 @@ def install_recovery(image_name):
         except StandardError as err:
                 raise err
         else:
-                print "Compress the factory image and install it into the recovery rootfs"
-                with gzip.open(IMAGE_MOUNT_PATH, 'wb') as f_out, open(image_name, 'rb') as f_in:
-                        shutil.copyfileobj(f_in, f_out)
-                print "Completed"
+                print "Copy rootfs archive into the recovery rootFS"
+                shutil.copyfile(image_name, IMAGE_MOUNT_PATH)
                 umount_recovery()
+                print "Completed"
         
