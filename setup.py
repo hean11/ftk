@@ -21,7 +21,7 @@ from setuptools import setup
 
 setup(
     name = 'ftk',
-    version = '1.0.0',
+    version = '1.2.0',
     url = 'http://www.sitec-systems.de',
     license = 'LGPLv2',
     author = 'Robert Lehmann',

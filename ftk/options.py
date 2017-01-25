@@ -39,7 +39,7 @@ class Options:
                             help='Flash a new Kernel Image into the corresponding flash partition')
         self.parser.add_argument('-d', '--dtb-install', action='store', dest='dtb_install',
                             help='Flash a new DeviceTreeBlob into the corresponding flash partition')
-        self.parser.add_argument('-v', '--version', action='version', version='1.1.0')
+        self.parser.add_argument('-v', '--version', action='version', version='1.2.0')
 
     def parse(self):
         self.args = self.parser.parse_args()
